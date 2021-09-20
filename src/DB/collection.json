@@ -1,0 +1,70 @@
+{
+  "users": [
+    {
+      "username": "hari",
+      "id": 1
+    }
+  ],
+  "posts": [
+    {
+      "id": "hari1",
+      "post_id": 1,
+      "authorname": "hari",
+      "title": "Iranian boat with drug consignment, 7 crew apprehended off Gujarat",
+      "content": "It was carrying over 30 kg heroin worth more than ₹150 crore in the international market.\nIn a joint operation, the Indian Coast Guard and Anti-Terrorist Squad (ATS) of the Gujarat Police apprehended an Iranian boat off the Gujarat coast carrying over 30 kg heroin worth more than ₹150 crore in the international market.\n\nThere were seven crew onboard when the fishing boat entered Indian territorial waters after which it was intercepted and apprehended by the Indian agencies based on intelligence inputs.\n\nAccording to sources, the boat, seized during the operation conducted late on Saturday night, carried an estimated 30 to 50 kg of the contraband, worth about ₹150 to ₹ 250 crore in the international market, but the exact amount of the drug in the vessel will be known once the boat is anchored at a near by port and searched.\n\n\nThe crew, all Iranian nationals, have apprehended and are being taken to the port in Gujarat for further investigation.\n\n“We had credible inputs from our intelligence sources about a big drug contraband on its way for delivery in mid-sea,” said ATS DIG Himanshu Shukla.\n\n\nADVT\nADVT\n\n“On an intelligence based joint act, @IndianCoastGuard with ATS #Gujarat apprehended #Iranian boat in #Indian waters with 07 crew carrying #drugs. The boat is brought to the nearest port for further rummaging and investigations,” a defence PRO of Gujarat said on their official Twitter handle.\n\nIn last few years, Gujarat coast has become a preferred route for smuggling of drugs from Pakistan or Iran.\n\nIn April this year, eight Pakistani nationals onboard a boat were apprehended with heroin worth around ₹150 crore off the Gujarat coast in the Arabian Sea.\n\nIn January last year, five Pakistani nationals on board a fishing boat were apprehended mid-sea off the Gujarat coast while they were allegedly trying to smuggle drugs worth ₹175 crore into the State.\n\nAs many as 35 packets of heroin, each weighing 1 kg, were seized from the five men near Jakhau coast in Kutch district.\n\nSimilarly in July 2017, in one of the biggest drugs haul, an Indian Coast Guard ship seized 1,500 kg of heroin valued at about ₹3,500 crore from a merchant vessel off the Gujarat coast.",
+      "views": 0,
+      "time": "2021/9/19 19:10:1"
+    },
+    {
+      "id": "hari2",
+      "post_id": 2,
+      "authorname": "hari",
+      "title": "Taliban spokesman Zabiullah Mujahid says he lived in Kabul right under nose of his adversaries",
+      "content": "‘I escaped so many times from their raids and attempts to capture me that they seriously considered that ‘Zabiullah’ was a made up figure’\nTaliban’s spokesman Zabiullah Mujahid, who appeared before the media for the first time in a decade at a press conference after the insurgent group seized Kabul last month, said that he lived in the Afghan capital right under the nose of his adversaries who considered him a 'ghost-like' figure during the war.\n",
+      "views": 0,
+      "time": "2021/9/19 21:53:6"
+    },
+    {
+      "id": "hari3",
+      "post_id": 3,
+      "authorname": "hari",
+      "title": "Security alert on threat of human bombs",
+      "content": "IS book explains ways to make types of explosive belts/vests, say police officers\nSecurity agencies issued an alert early this month on the possibility of human bombs targeting vital installations or targeted individuals as part of an IS terror plot to eliminate enemies of jihad.\n",
+      "views": 0,
+      "time": "2021/9/19 21:58:12"
+    }
+  ],
+  "comment": [
+    {
+      "id": 1,
+      "post_id": "user1_post1",
+      "comment_id": "user1_post1_comment1",
+      "comment": "jghjfdssfff",
+      "username": "admin",
+      "commentReply": [
+        {
+          "commentReplyId": "user1_post1_comment1_reply1",
+          "username": "admin"
+        }
+      ]
+    }
+  ],
+  "upvote": [
+    {
+      "id": "hari101",
+      "post_id": "hari1",
+      "authorname": "hari"
+    },
+    {
+      "id": "hari111",
+      "post_id": "hari1",
+      "authorname": "hari"
+    }
+  ],
+  "Username": [
+    {
+      "name": "hari",
+      "id": 1
+    }
+  ]
+}
