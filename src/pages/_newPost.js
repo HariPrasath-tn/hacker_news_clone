@@ -6,7 +6,6 @@
 
 import NavBar from '../pageComponents/navBar';
 import { useState, useEffect} from "react";
-import {fetchname, setname} from "../Serverside/NameAccess";
 import React from "react";
 //rendering Newpost page
 const NewPosts = () => {
@@ -15,7 +14,6 @@ const NewPosts = () => {
     const time = datetime.getFullYear() + '/' + (datetime.getMonth()+1) + '/' + datetime.getDate() +' '+ datetime.getHours()+':'+ datetime.getMinutes()+':'+ datetime.getSeconds();
     const [headline_, setHeadline] = useState("");
     const [newsFeed, setNewsFeed] = useState("");
-    const [user, setuser_] = useState("");
 
     const [PostList, setPostList] = useState("");
 
@@ -34,13 +32,6 @@ const NewPosts = () => {
         .then(postList=>{
             setPostList(postList);
         });
-        fetch('http://localhost:5050/users')
-        .then(result => {
-            return result.json();
-        })
-        .then(user=>{
-            setuser_(user);
-        });
     }, []);
     
 
@@ -55,6 +46,8 @@ const NewPosts = () => {
                 "title": headline_, 
                 "content":newsFeed, 
                 "views":0,
+                "upvote": 0,
+                "comments": 0,
                 "time": time
             })
         })
@@ -128,7 +121,12 @@ const NewPosts = () => {
                         marginBottom:"50px",
                         fontFamily: "sans-serif", 
                         fontSize: "20px", 
-                        }} onClick= {HandleInsert}>submit</a>
+                        }} onClick= {()=>{
+                            if(User.length > 0){
+                                HandleInsert();
+                            }else{
+                                alert("login to upload your post...");
+                            }}}>submit</a>
                 </form>
             </div>
         </div>

@@ -4,13 +4,10 @@ import NewPosts from "./pages/_newPost";
 import Log from "./pages/_log";
 import View from "./pages/_view";
 import NotFound from "./pages/_pageNotFound";
-import {useState} from "react";
 import React from "react";
 
 
 const GetCorrectPage = ()=>{
-    const [username_, setUsername] = useState("");
-    const [isLoggedin, setLoggedin] = useState(false);
     return(
         <Router>
             <div className="Router">
@@ -26,9 +23,6 @@ const GetCorrectPage = ()=>{
                     </Route>
                     <Route exact path="/home/older">
                         <Home filt={"older"}/>
-                    </Route>
-                    <Route exact path="/home/new">
-                        <Home filt={"new"}/>
                     </Route>
                     <Route exact path="/home/myPosts">
                         <Home filt={"myPost"}/>

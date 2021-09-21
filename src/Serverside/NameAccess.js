@@ -10,32 +10,20 @@ const fetchname = (temp) => {
         .then(users=>{
             alert(users);
             setUser(users.name);
-
         });
 
-    return "user";
-}
-
-const deleteIt = () =>{
-    fetch('http://localhost:5050/Username/1', {
-            method: 'DELETE',
-        })
-        .then(() => {
-            console.log("success");
-        }).catch(err => console.log(err));
+    return user;
 }
 
 const setname = (name)=>{
-    deleteIt();alert("");
-    fetch('http://localhost:5050/Username', {
-            method: 'POST',
+    fetch('http://localhost:5050/Username/1', {
+            method: 'PATCH',
             headers: {"Content-Type": "application/json"},
-            body:JSON.stringify({"name":name, id:1})
+            body:JSON.stringify({"name":name})
         })
         .then(() => {
             console.log("success");
         }).catch(err => console.log(err));
-    return ""
 }
 
 export {

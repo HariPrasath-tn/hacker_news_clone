@@ -5,9 +5,8 @@
 */
 import NavBar from '../pageComponents/navBar';
 import { useState, useEffect} from "react";
-import {Link} from "react-router-dom";
 import React from "react";
-import {fetchname, setname} from "../Serverside/NameAccess";
+import {setname} from "../Serverside/NameAccess";
 //rendering Log page
 const Log = () => {
     const [username, setUsername] = useState("");
@@ -28,9 +27,10 @@ const Log = () => {
         setname(username);
         let isAvail = false;
         users.map((user)=>{
-            if(user.username == username){
+            if(user.username === username){
                 isAvail = true;
             }
+            return "";
         });
 
         if (!isAvail){

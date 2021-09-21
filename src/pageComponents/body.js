@@ -12,19 +12,47 @@ import "../Css/body.css"
 
 //Body content function
 const Body = (probs) => {
+    const condition = probs.opt;
     const [posts, setposts] = useState(null);
     const [comments, setComments] = useState(null);
     const [upvote, setUpvote] = useState(null);
     const [User, setUser] = useState("");
 
     useEffect(()=>{
-        fetch('http://localhost:5050/posts')
-        .then(result => {
-            return result.json();
-        })
-        .then(posts=>{
-            setposts(posts);
-        });
+        fetch('http://localhost:5050/sortby/1')
+                            .then(result => {
+                                return result.json();
+                            })
+                            .then(sortby=>{
+                                fetch('http://localhost:5050/posts')
+                                    .then(result => {
+                                        return result.json();
+                                    })
+                                    .then(posts=>{
+                                        fetch('http://localhost:5050/Username/1')
+                                            .then(result => {
+                                                return result.json();
+                                            })
+                                            .then(users=>{
+                                                setUser(users.name);
+                                                posts = posts.filter((post)=>{
+                                                    return (condition === "myPost" ? post.authorname === users.name : true);
+                                                })
+                                                setposts(posts.sort((a,b)=>{
+                                                    if(sortby.sortBy === "decrease"){
+                                                        return(b.upvote - a.upvote < 0 ? -1 : 0);
+                                                    }else if(sortby.sortBy === "increase"){
+                                                        return(b.upvote - a.upvote < 0 ? 0 : -1);
+                                                    }else if(sortby.sortBy === "timeUp"){
+                                                        return(b.time - a.time < 0 ? -1 : 0);
+                                                    }else if(sortby.sortBy === "timeDown"){
+                                                        return(b.time - a.time < 0 ? 0 : -1);
+                                                    }
+                                                }));
+                                            });            
+                                    });
+                            });
+        
         fetch('http://localhost:5050/comment')
         .then(result => {
             return result.json();
@@ -39,24 +67,14 @@ const Body = (probs) => {
         .then(upvotes=>{
             setUpvote(upvotes);
         });
-        fetch('http://localhost:5050/Username/1')
-                .then(result => {
-                    return result.json();
-                })
-                .then(users=>{
-                    setUser(users.name);
-                });
+        
         
     }, []);
 
     const getCount = (id) => {
-        let count = 0;
-        upvote.map((vote)=>{
-            if(vote.post_id == id){
-                count++;
-            }
-        })
-        return count;
+        return (upvote.filter((upvotes)=>{
+            return upvotes.post_id === id;
+        })).length;
     }
     
     return(
@@ -66,27 +84,38 @@ const Body = (probs) => {
             {posts && comments && upvote && 
                 posts.map((post)=>(
                     <div className="bodyElement" key={post.post_id}>
-                        <Link to={`/view/${post.id}`}  style={{
+                        <Link to={`/view/${post.id}`} style={{
                             fontStyle:"italic", fontSize:"30px"
                         }}>{post.title}</Link><br/>
 
                         <label>{"Views:"+ post.views + "  |  " + "Uploaded time:" + post.time +"  | "}</label>
 
-                        <button style={{
+                        <a href="/newPost" style={{
                             marginLeft:"10px",
                             backgroundColor:"transparent"
-                        }} > {"("+comments.length+") Comment"}</button>
+                        }} > {"("+post.comments+") Comment"}</a>
 
                         <a href="/" onClick={()=> {
-                            fetch('http://localhost:5050/upvote', {
-                                method: 'POST',
-                                headers: {"Content-Type": "application/json"},
-                                body:JSON.stringify({
-                                    id:(post.id+ upvote.length + 1),
-                                    "post_id":(post.id),
-                                    "authorname":User
-                                })
-                            })
+                            if(User.length > 0){
+                                fetch('http://localhost:5050/upvote', {
+                                    method: 'POST',
+                                    headers: {"Content-Type": "application/json"},
+                                    body:JSON.stringify({
+                                        id:(post.id + User),
+                                        "post_id":(post.id),
+                                        "authorname":User
+                                    })
+                                }).then(result => {if(result.ok){
+                                    fetch('http://localhost:5050/posts/'+post.id, {
+                                        method: 'PATCH',
+                                        headers: {"Content-Type": "application/json"},
+                                        body:JSON.stringify({"upvote":post.upvote + 1})
+                                    })
+                                }})
+                            }else{
+                                alert("login to upvote a post");
+                            }
+                            
                         }} style={{
                             marginLeft:"10px",
                             backgroundColor:"transparent"
@@ -94,7 +123,7 @@ const Body = (probs) => {
 
                         <a href="/" onClick={()=> {
                             try {
-                                fetch('http://localhost:5050/upvote/'+post.id+ upvote.length, {
+                                fetch('http://localhost:5050/upvote/'+post.id+ User, {
                                 method: 'DELETE',
                                 headers: {"Content-Type": "application/json"},
                                 body:JSON.stringify({
@@ -102,7 +131,13 @@ const Body = (probs) => {
                                     "post_id":(post.id),
                                     "authorname":User
                                 })
-                            })
+                            }).then(result => {if(result.ok){
+                                fetch('http://localhost:5050/posts/'+post.id, {
+                                        method: 'PATCH',
+                                        headers: {"Content-Type": "application/json"},
+                                        body:JSON.stringify({"upvote":post.upvote - 1})
+                                    })
+                            }})
                             } catch (error) {
                                 
                             }
