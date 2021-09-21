@@ -90,10 +90,10 @@ const Body = (probs) => {
 
                         <label>{"Views:"+ post.views + "  |  " + "Uploaded time:" + post.time +"  | "}</label>
 
-                        <a href="/newPost" style={{
+                        <Link to={`/view/${post.id}`} style={{
                             marginLeft:"10px",
                             backgroundColor:"transparent"
-                        }} > {"("+post.comments+") Comment"}</a>
+                        }} > {"("+post.comments+") Comment"}</Link>
 
                         <a href="/" onClick={()=> {
                             if(User.length > 0){
