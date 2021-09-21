@@ -52,7 +52,8 @@ const NavBar = (probs) => {
                 {islogged && <Link className="setOrd" onClick={()=>{
                     check();
                     setname("");
-                    }} to="/home" style={{color:"red", backgroundColor:"transparent"}}>Logout</Link>}
+                    window.location.reload(();
+                    }} style={{color:"red", backgroundColor:"transparent"}}>Logout</Link>}
                 <a className="setOrd" href="/home/myPosts">View My Posts</a>
                 <a className="setOrd" href="/newPost">Post News</a>
                 <a className="setOrd" href="/home/older">Older</a>
